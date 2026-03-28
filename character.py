@@ -14,9 +14,16 @@ class Character:
         self.name = name
         self.race = race
         self.character_class = character_class
-        self.strength = strength
-        self.dexterity = dexterity
-        self.constitution = constitution
-        self.intelligence = intelligence
-        self.wisdom = wisdom
-        self.charisma = charisma
+        self.strength = self._validate_stat(strength)
+        self.dexterity = self._validate_stat(dexterity)
+        self.constitution = self._validate_stat(constitution)
+        self.intelligence = self._validate_stat(intelligence)
+        self.wisdom = self._validate_stat(wisdom)
+        self.charisma = self._validate_stat(charisma)
+
+    def _validate_stat(self, value):
+        if value is None:
+            return value
+        if value < 3 or value > 18:
+            raise ValueError("Stat must be between 3 and 18")
+        return value

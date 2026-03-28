@@ -32,6 +32,14 @@ class TestCharacter(unittest.TestCase):
         self.assertEqual(char.wisdom, 10)
         self.assertEqual(char.charisma, 9)
 
+    def test_stats_must_be_in_valid_range(self):
+        from character import Character
+        with self.assertRaises(ValueError):
+            Character(name="BadChar", strength=2)
+
+        with self.assertRaises(ValueError):
+            Character(name="BadChar", strength=19)
+
 
 if __name__ == "__main__":
     unittest.main()
