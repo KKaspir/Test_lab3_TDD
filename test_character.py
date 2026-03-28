@@ -40,6 +40,14 @@ class TestCharacter(unittest.TestCase):
         with self.assertRaises(ValueError):
             Character(name="BadChar", strength=19)
 
+    def test_get_modifier(self):
+        from character import Character
+        char = Character(name="Test", strength=14)
+        self.assertEqual(char.get_modifier(char.strength), 2)
+
+        char = Character(name="Test", strength=9)
+        self.assertEqual(char.get_modifier(char.strength), -1)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -27,3 +27,6 @@ class Character:
         if value < 3 or value > 18:
             raise ValueError("Stat must be between 3 and 18")
         return value
+
+    def get_modifier(self, stat):
+        return (stat - 10) // 2
