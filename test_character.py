@@ -48,6 +48,17 @@ class TestCharacter(unittest.TestCase):
         char = Character(name="Test", strength=9)
         self.assertEqual(char.get_modifier(char.strength), -1)
 
+    def test_roll_stats_fills_all_attributes_in_range(self):
+        from character import Character
+        char = Character(name="RandomHero")
+        char.roll_stats()
+        stats = [
+            char.strength, char.dexterity, char.constitution,
+            char.intelligence, char.wisdom, char.charisma
+        ]
+        for stat in stats:
+            self.assertTrue(3 <= stat <= 18)
+
 
 if __name__ == "__main__":
     unittest.main()

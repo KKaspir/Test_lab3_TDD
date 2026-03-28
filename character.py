@@ -1,3 +1,5 @@
+import random
+
 class Character:
     def __init__(
         self,
@@ -30,3 +32,15 @@ class Character:
 
     def get_modifier(self, stat):
         return (stat - 10) // 2
+
+    def roll_stats(self):
+        def roll_4d6_drop_lowest():
+            rolls = [random.randint(1,6) for _ in range(4)]
+            return sum(rolls) - min(rolls)
+
+        self.strength = roll_4d6_drop_lowest()
+        self.dexterity = roll_4d6_drop_lowest()
+        self.constitution = roll_4d6_drop_lowest()
+        self.intelligence = roll_4d6_drop_lowest()
+        self.wisdom = roll_4d6_drop_lowest()
+        self.charisma = roll_4d6_drop_lowest()
