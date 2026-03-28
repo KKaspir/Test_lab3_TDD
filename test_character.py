@@ -14,6 +14,24 @@ class TestCharacter(unittest.TestCase):
         self.assertEqual(char.race, "Elf")
         self.assertEqual(char.character_class, "Rogue")
 
+    def test_character_has_stats(self):
+        from character import Character
+        char = Character(
+            name="Gimli",
+            strength=10,
+            dexterity=12,
+            constitution=14,
+            intelligence=8,
+            wisdom=10,
+            charisma=9
+        )
+        self.assertEqual(char.strength, 10)
+        self.assertEqual(char.dexterity, 12)
+        self.assertEqual(char.constitution, 14)
+        self.assertEqual(char.intelligence, 8)
+        self.assertEqual(char.wisdom, 10)
+        self.assertEqual(char.charisma, 9)
+
 
 if __name__ == "__main__":
     unittest.main()
