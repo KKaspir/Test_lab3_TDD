@@ -111,6 +111,26 @@ class TestCharacter(unittest.TestCase):
         self.assertEqual(rogue.hit_die, 8)
         self.assertEqual(rogue.primary_ability, "dexterity")
 
+    def test_display_sheet_returns_formatted_character_sheet(self):
+        from character import Character
+        char = Character(
+            name="Aragorn",
+            race="Human",
+            character_class="Fighter",
+            strength=15,
+            dexterity=12,
+            constitution=14,
+            intelligence=10,
+            wisdom=13,
+            charisma=11
+        )
+        sheet = char.display_sheet()
+        self.assertIn("Name: Aragorn", sheet)
+        self.assertIn("Race: Human", sheet)
+        self.assertIn("Class: Fighter", sheet)
+        self.assertIn("Strength: 16 (+3)", sheet)
+        self.assertIn("Hit Die: d10", sheet)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -82,3 +82,24 @@ class Character:
         self.intelligence = roll_4d6_drop_lowest()
         self.wisdom = roll_4d6_drop_lowest()
         self.charisma = roll_4d6_drop_lowest()
+
+    def display_sheet(self):
+        lines = [
+            "=== CHARACTER SHEET ===",
+            f"Name: {self.name}",
+            f"Race: {self.race}",
+            f"Class: {self.character_class}",
+            f"Hit Die: d{self.hit_die}" if self.hit_die is not None else "Hit Die: N/A",
+            f"Primary Ability: {self.primary_ability}" if self.primary_ability else "Primary Ability: N/A",
+            f"Strength: {self.strength} ({self._format_modifier(self.strength)})",
+            f"Dexterity: {self.dexterity} ({self._format_modifier(self.dexterity)})",
+            f"Constitution: {self.constitution} ({self._format_modifier(self.constitution)})",
+            f"Intelligence: {self.intelligence} ({self._format_modifier(self.intelligence)})",
+            f"Wisdom: {self.wisdom} ({self._format_modifier(self.wisdom)})",
+            f"Charisma: {self.charisma} ({self._format_modifier(self.charisma)})",
+        ]
+        return "\n".join(lines)
+
+    def _format_modifier(self, stat):
+        modifier = self.get_modifier(stat)
+        return f"+{modifier}" if modifier >= 0 else str(modifier)
