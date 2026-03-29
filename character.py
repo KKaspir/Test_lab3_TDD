@@ -23,6 +23,9 @@ class Character:
         self.wisdom = self._validate_stat(wisdom)
         self.charisma = self._validate_stat(charisma)
         self._apply_race_bonus()
+        self.hit_die = None
+        self.primary_ability = None
+        self._apply_class_features()
 
     def _validate_stat(self, value):
         if value is None:
@@ -54,6 +57,16 @@ class Character:
             current_value = getattr(self, stat_name)
             if current_value is not None:
                 setattr(self, stat_name, current_value + bonus)
+
+    def _apply_class_features(self):
+        class_features = {
+            "Fighter": {"hit_die": 10, "primary_ability": "strength"},
+            "Wizard": {"hit_die": 6, "primary_ability": "intelligence"},
+            "Rogue": {"hit_die": 8, "primary_ability": "dexterity"},
+        }
+        features = class_features.get(self.character_class, {})
+        self.hit_die = features.get("hit_die")
+        self.primary_ability = features.get("primary_ability")
 
     def get_modifier(self, stat):
         return (stat - 10) // 2

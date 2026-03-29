@@ -96,6 +96,21 @@ class TestCharacter(unittest.TestCase):
         )
         self.assertEqual(char.constitution, 12)
 
+    def test_character_class_sets_class_properties(self):
+        from character import Character
+
+        fighter = Character(name="Aragorn", character_class="Fighter")
+        self.assertEqual(fighter.hit_die, 10)
+        self.assertEqual(fighter.primary_ability, "strength")
+
+        wizard = Character(name="Gandalf", character_class="Wizard")
+        self.assertEqual(wizard.hit_die, 6)
+        self.assertEqual(wizard.primary_ability, "intelligence")
+
+        rogue = Character(name="Shadow", character_class="Rogue")
+        self.assertEqual(rogue.hit_die, 8)
+        self.assertEqual(rogue.primary_ability, "dexterity")
+
 
 if __name__ == "__main__":
     unittest.main()
