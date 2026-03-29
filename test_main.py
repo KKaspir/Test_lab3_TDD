@@ -19,6 +19,16 @@ class TestMain(unittest.TestCase):
         self.assertIn("3. Exit", printed)
         self.assertIn("Goodbye!", printed)
 
+    def test_show_sheet_without_character_displays_message(self):
+        user_input = ["2", "3"]
+        output = io.StringIO()
+
+        with patch("builtins.input", side_effect=user_input), patch("sys.stdout", new=output):
+            main.run()
+
+        printed = output.getvalue()
+        self.assertIn("No character created yet.", printed)
+
 
 if __name__ == "__main__":
     unittest.main()
