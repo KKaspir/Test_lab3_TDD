@@ -32,19 +32,28 @@ class Character:
         return value
 
     def _apply_race_bonus(self):
-        if self.race == "Human":
-            if self.strength is not None:
-                self.strength += 1
-            if self.dexterity is not None:
-                self.dexterity += 1
-            if self.constitution is not None:
-                self.constitution += 1
-            if self.intelligence is not None:
-                self.intelligence += 1
-            if self.wisdom is not None:
-                self.wisdom += 1
-            if self.charisma is not None:
-                self.charisma += 1
+        race_bonuses = {
+            "Human": {
+                "strength": 1,
+                "dexterity": 1,
+                "constitution": 1,
+                "intelligence": 1,
+                "wisdom": 1,
+                "charisma": 1,
+            },
+            "Elf": {
+                "dexterity": 2,
+            },
+            "Dwarf": {
+                "constitution": 2,
+            }
+        }
+
+        bonuses = race_bonuses.get(self.race, {})
+        for stat_name, bonus in bonuses.items():
+            current_value = getattr(self, stat_name)
+            if current_value is not None:
+                setattr(self, stat_name, current_value + bonus)
 
     def get_modifier(self, stat):
         return (stat - 10) // 2

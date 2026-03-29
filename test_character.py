@@ -78,6 +78,24 @@ class TestCharacter(unittest.TestCase):
         self.assertEqual(char.wisdom, 11)
         self.assertEqual(char.charisma, 11)
 
+    def test_elf_gets_plus_two_to_dexterity(self):
+        from character import Character
+        char = Character(
+            name="Legolas",
+            race="Elf",
+            dexterity=10
+        )
+        self.assertEqual(char.dexterity, 12)
+
+    def test_dwarf_gets_plus_two_to_constitution(self):
+        from character import Character
+        char = Character(
+            name="Gimli",
+            race="Dwarf",
+            constitution=10
+        )
+        self.assertEqual(char.constitution, 12)
+
 
 if __name__ == "__main__":
     unittest.main()
