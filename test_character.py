@@ -59,6 +59,25 @@ class TestCharacter(unittest.TestCase):
         for stat in stats:
             self.assertTrue(3 <= stat <= 18)
 
+    def test_human_gets_plus_one_to_all_stats(self):
+        from character import Character
+        char = Character(
+            name="HumanHero",
+            race="Human",
+            strength=10,
+            dexterity=10,
+            constitution=10,
+            intelligence=10,
+            wisdom=10,
+            charisma=10
+        )
+        self.assertEqual(char.strength, 11)
+        self.assertEqual(char.dexterity, 11)
+        self.assertEqual(char.constitution, 11)
+        self.assertEqual(char.intelligence, 11)
+        self.assertEqual(char.wisdom, 11)
+        self.assertEqual(char.charisma, 11)
+
 
 if __name__ == "__main__":
     unittest.main()
